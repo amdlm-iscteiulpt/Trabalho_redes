@@ -1,7 +1,5 @@
 package pt.iscte.dcti.redes1.trabalho;
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class ModoDemonstracao {
@@ -11,11 +9,9 @@ public class ModoDemonstracao {
 	private static Trama ErroPadrao;
 	private Emissor e;
 	private int opcao;
-	private Hamming m;
 
 	public ModoDemonstracao(Emissor e, Hamming m) {
 		this.e = e;
-		this.m=m;
 		menu();
 		Scanner scanner = new Scanner(System.in);
 		int opcao = scanner.nextInt();
@@ -38,15 +34,24 @@ public class ModoDemonstracao {
 			setOpcao(2);
 			break;
 		case 3:
-			System.out.println("CRC");
+			System.out.println("CRC Grau 3");
 			bits_dados(scanner);
-			CRCReceptor crc = new CRCReceptor(trama_bits.getTrama());
-			Transmitida = new Trama(crc.tramaFCSEmissor());
+			CRCReceptor crcGrau3 = new CRCReceptor(trama_bits.getTrama());
+			Transmitida = new Trama(crcGrau3.tramaFCSEmissor());
+			padra_erro(scanner);
+			setOpcao(3);
+			break;
+			
+		case 4:
+			System.out.println("CRC Grau 8");
+			bits_dados(scanner);
+			CRCReceptor crcGrau8 = new CRCReceptor(trama_bits.getTrama());
+			Transmitida = new Trama(crcGrau8.tramaFCSEmissor());
 			padra_erro(scanner);
 			setOpcao(3);
 			break;
 		default:
-			System.out.println("Número errado, Tente outra vez!");
+			System.out.println("Numero errado, Tente outra vez!");
 			menu();
 			break;
 		}

@@ -26,7 +26,7 @@ public class CanalRuidoso {
 		int tamanho;
 		switch(opcao){
 		case 1:
-			tamanho=12;
+			tamanho=5;
 			break;
 		
 		default:

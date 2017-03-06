@@ -2,16 +2,15 @@ package pt.iscte.dcti.redes1.trabalho;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
-public class CRC {
+public class CRCGrau3 {
 
 	private final ArrayList<Integer> polinGerador = new ArrayList<Integer>(Arrays.asList(1, 0, 0, 0, 1));
-	private final int grauPolinGerador = 4;
+	private final int grauPolinGerador = 3;
 	private int vezes = 0;
 	private ArrayList<Integer> dadosOriginal = new ArrayList<Integer>();
 
-	public CRC(ArrayList<Integer> dados) {
+	public CRCGrau3(ArrayList<Integer> dados) {
 		this.dadosOriginal = dados;
 	}
 

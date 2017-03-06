@@ -1,6 +1,5 @@
 package pt.iscte.dcti.redes1.Simulacao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -8,7 +7,6 @@ import pt.iscte.dcti.redes1.trabalho.CanalRuidoso;
 import pt.iscte.dcti.redes1.trabalho.Emissor;
 import pt.iscte.dcti.redes1.trabalho.Hamming;
 import pt.iscte.dcti.redes1.trabalho.Receptor;
-import pt.iscte.dcti.redes1.trabalho.Trama;
 
 public class Main {
 
