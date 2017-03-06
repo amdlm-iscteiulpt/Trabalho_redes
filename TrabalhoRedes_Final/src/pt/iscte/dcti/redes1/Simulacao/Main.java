@@ -14,7 +14,7 @@ public class Main {
 
 	public static final double[] pErroBit = {0.000001, 0.00001, 0.0001, 0.001, 0.01, 0.1, 0.125, 0.25, 0.5};
 	public static HashMap<Integer, Integer> xBitsErrados = new HashMap<Integer, Integer>();
-	
+	//main
 	
 	public static void main(String[] args) {
 		int i = 0;
