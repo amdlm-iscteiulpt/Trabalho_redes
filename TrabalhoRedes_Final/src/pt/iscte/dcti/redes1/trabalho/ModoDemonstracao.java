@@ -36,7 +36,7 @@ public class ModoDemonstracao {
 		case 3:
 			System.out.println("CRC Grau 3");
 			bits_dados(scanner);
-			CRCReceptor crcGrau3 = new CRCReceptor(trama_bits.getTrama());
+			CRCReceptorGrau8 crcGrau3 = new CRCReceptorGrau8(trama_bits.getTrama());
 			Transmitida = new Trama(crcGrau3.tramaFCSEmissor());
 			padra_erro(scanner);
 			setOpcao(3);
@@ -45,7 +45,7 @@ public class ModoDemonstracao {
 		case 4:
 			System.out.println("CRC Grau 8");
 			bits_dados(scanner);
-			CRCReceptor crcGrau8 = new CRCReceptor(trama_bits.getTrama());
+			CRCReceptorGrau8 crcGrau8 = new CRCReceptorGrau8(trama_bits.getTrama());
 			Transmitida = new Trama(crcGrau8.tramaFCSEmissor());
 			padra_erro(scanner);
 			setOpcao(3);

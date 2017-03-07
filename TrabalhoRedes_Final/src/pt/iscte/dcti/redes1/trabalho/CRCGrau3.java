@@ -9,7 +9,7 @@ public class CRCGrau3 {
 	private final int grauPolinGerador = 3;
 	private int vezes = 0;
 	private ArrayList<Integer> dadosOriginal = new ArrayList<Integer>();
-
+	//(1,0, 0, 0, 0,0,1,1, 1
 	public CRCGrau3(ArrayList<Integer> dados) {
 		this.dadosOriginal = dados;
 	}

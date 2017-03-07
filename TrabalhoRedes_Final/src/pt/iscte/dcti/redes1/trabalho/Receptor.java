@@ -10,7 +10,7 @@ public class Receptor {
 	}
 
 	public void getResto() {
-		CRCReceptor crc = new CRCReceptor(tramaRecebida.getTrama());
+		CRCReceptorGrau8 crc = new CRCReceptorGrau8(tramaRecebida.getTrama());
 		Trama trama = new Trama(crc.tramaFCS());
 		if (trama.contador() == 0) {
 			System.out

@@ -3,13 +3,13 @@ package pt.iscte.dcti.redes1.trabalho;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CRCReceptor {
+public class CRCReceptorGrau8 {
 	private final ArrayList<Integer> polinGerador = new ArrayList<Integer>(Arrays.asList(1, 0, 0, 0, 1));
 	private final int grauPolinGerador = 4;
 	private int vezes = 0;
 	private ArrayList<Integer> dadosOriginal = new ArrayList<Integer>();
 
-	public CRCReceptor(ArrayList<Integer> dados) {
+	public CRCReceptorGrau8(ArrayList<Integer> dados) {
 		this.dadosOriginal = dados;
 	}
 

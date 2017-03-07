@@ -1,7 +1,7 @@
 package pt.iscte.dcti.redes1.Simulacao;
 
 import pt.iscte.dcti.redes1.trabalho.BitParidade;
-import pt.iscte.dcti.redes1.trabalho.CRCReceptor;
+import pt.iscte.dcti.redes1.trabalho.CRCReceptorGrau8;
 import pt.iscte.dcti.redes1.trabalho.Emissor;
 import pt.iscte.dcti.redes1.trabalho.Hamming;
 import pt.iscte.dcti.redes1.trabalho.Trama;
@@ -88,7 +88,7 @@ public class Simulacao {
 	public void sendTransmitida(Trama transmitida) {
 		switch (opcao) {
 		case 3:
-			CRCReceptor crc = new CRCReceptor(transmitida.getTrama());
+			CRCReceptorGrau8 crc = new CRCReceptorGrau8(transmitida.getTrama());
 			Trama t = new Trama(crc.tramaFCSEmissor());
 			this.s.setTramaTransmitida(t);
 			System.out.println("Trama Transmitida -> T:" + t);
