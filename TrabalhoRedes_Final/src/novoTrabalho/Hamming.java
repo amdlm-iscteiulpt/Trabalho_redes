@@ -1,6 +1,7 @@
-package pt.iscte.dcti.redes1.trabalho;
+package novoTrabalho;
 
 import java.util.ArrayList;
+
 public class Hamming {
 	
 	private ArrayList<Integer> tramaR = new ArrayList<Integer>();
@@ -17,10 +18,10 @@ public class Hamming {
 		
 	}
 	
-	public void definirTramaT(Trama trama){
+	public void definirTramaT(Trama tramaDados){
 		
-		for (int i = 0; i < trama.getTrama().size(); i++) {
-			tramaInicio.add(trama.getTrama().get(i));
+		for (int i = 0; i < tramaDados.getTrama().size(); i++) {
+			tramaInicio.add(tramaDados.getTrama().get(i));
 		}
 		definirMatriz();
 	}

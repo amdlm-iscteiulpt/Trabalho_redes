@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class BitParidade {
 
 	public int calculoParidadePar(Trama t) {
-		ArrayList<Integer> lista = t.getListaTrama();
+		ArrayList<Integer> lista = t.getTrama();
 		int c = 0;
 		for (int i = 0; i < lista.size(); i++) {
 			if (lista.get(i) == 1) {
@@ -16,16 +16,17 @@ public class BitParidade {
 
 	}
 
-	public ArrayList<Integer> calculoBitParidade(Trama t) {
+	public Trama calculoBitParidade(Trama t) {
 		int contador = calculoParidadePar(t);
-		ArrayList<Integer> tramaRecebida = t.getListaTrama();
+		ArrayList<Integer> tramaRecebida = t.getTrama();
 		if (contador % 2 == 0) {
 			tramaRecebida.add(0);
 
 		} else {
-			tramaRecebida.add(0);
+			tramaRecebida.add(1);
 
 		}
-		return tramaRecebida;
+		Trama tramaT = new Trama(tramaRecebida);
+		return tramaT;
 	}
 }
