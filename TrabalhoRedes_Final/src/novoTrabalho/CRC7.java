@@ -40,7 +40,6 @@ public class CRC7 {
 	}
 
 	private void setRecebida(Trama dados) {
-		System.out.println("dados " + dados.toString());
 		ArrayList<Integer> arrayDados = dados.getTrama();
 		for (int i = 0; i < arrayDados.size(); i++) {
 			trama_recebida.add(arrayDados.get(i));

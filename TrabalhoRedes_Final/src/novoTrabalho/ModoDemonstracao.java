@@ -28,11 +28,13 @@ public class ModoDemonstracao {
 			System.out.println("Bit Paridade");
 			tramaTransmitida = emissor.getTramaTransmitida(1, tramaDados);
 			getRecebida(scanner);
+			receptor.verificaErros(1, tramaRecebida, tramaTransmitida);
 			break;
 		case 2:
 			System.out.println("Hamming");
 			tramaTransmitida = emissor.getTramaTransmitida(2, tramaDados);
 			getRecebida(scanner);
+			receptor.verificaErros(2, tramaRecebida, tramaTransmitida);
 			break;
 		case 3:
 			System.out.println("CRC Grau 3");

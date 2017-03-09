@@ -17,34 +17,42 @@ public class Receptor {
 	public void verificaErros(int i, Trama recebida, Trama transmitida) {
 		switch (i) {
 		case 1:
-			// tramaTransmitida = b.calculoBitParidade(tramaDados);
+			if (b.errosBitParidade(recebida))
+				System.out.println("Resultado: Trama recebida COM erros.");
+			else
+				igualdadeEntreReT(recebida, transmitida);
+
 			break;
 		case 2:
-			// h.definirTramaT(tramaDados);
-			// tramaTransmitida = h.getTramaTransmitida();
+			if (h.errosHamming(recebida))
+				System.out.println("Resultado: Trama recebida COM erros.");
+			else
+				igualdadeEntreReT(recebida, transmitida);
+
 			break;
 		case 3:
-			if (crc7.tramaErrada(recebida)) {
+			if (crc7.tramaErrada(recebida))
 				System.out.println("Resultado: Trama recebida COM erros.");
-			} else {
-				if (recebida.equals(transmitida))
-					System.out.println("Resultado: Trama recebida COM erros que não foram detectados");
-				else
-					System.out.println("Resultado: Trama recebida SEM erros.");
-			}
+			else
+				igualdadeEntreReT(recebida, transmitida);
+
 			break;
 		case 4:
-			if (crc12.tramaErrada(recebida)) {
+			if (crc12.tramaErrada(recebida))
 				System.out.println("Resultado: Trama recebida COM erros.");
-			} else {
-				if (recebida.equals(transmitida))
-					System.out.println("Resultado: Trama recebida COM erros que não foram detectados");
-				else
-					System.out.println("Resultado: Trama recebida SEM erros.");
-			}
+			else
+				igualdadeEntreReT(recebida, transmitida);
+
 			break;
 		}
 
 	}
 
+	public void igualdadeEntreReT(Trama tramaRecebida, Trama tramaTransmitida) {
+		if (!tramaRecebida.equals(tramaTransmitida))
+			System.out.println("Resultado: Trama recebida COM erros que não foram detectados");
+		else
+			System.out.println("Resultado: Trama recebida SEM erros.");
+
+	}
 }

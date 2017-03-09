@@ -31,7 +31,7 @@ public class BitParidade {
 	}
 	
 	public boolean errosBitParidade(Trama tramaRecebida){
-		if (calculoParidadePar(tramaRecebida) %2==0){
+		if (calculoParidadePar(tramaRecebida) % 2 ==0){
 			return false;
 		}
 		else{
@@ -43,21 +43,21 @@ public class BitParidade {
 	
 	
 	//utilizar para todas
-	public boolean temErros(Trama tramaRecebida,Trama tramaTransmitida){
-		ArrayList<Integer>listaTramaRecebida=tramaRecebida.getTrama();
-		ArrayList<Integer>listaTramaTransmitida=tramaTransmitida.getTrama();
-		for (int i = 0; i < listaTramaRecebida.size(); i++) {
-			if(listaTramaRecebida.get(i)!=listaTramaTransmitida.get(i)){
-				System.out.println("trama com erros");
-				return false;
-				
-			}
-		
-		}
-		System.out.println("trama sem erros");
-		return true;
-	
-		
-		
-	}
+//	public boolean temErros(Trama tramaRecebida,Trama tramaTransmitida){
+//		ArrayList<Integer>listaTramaRecebida=tramaRecebida.getTrama();
+//		ArrayList<Integer>listaTramaTransmitida=tramaTransmitida.getTrama();
+//		for (int i = 0; i < listaTramaRecebida.size(); i++) {
+//			if(listaTramaRecebida.get(i)!=listaTramaTransmitida.get(i)){
+//				System.out.println("trama com erros");
+//				return false;
+//				
+//			}
+//		
+//		}
+//		System.out.println("trama sem erros");
+//		return true;
+//	
+//		
+//		
+//	}
 }

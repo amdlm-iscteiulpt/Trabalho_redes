@@ -15,7 +15,6 @@ public class CanalRuidoso {
 		}
 
 		Trama tramaRecebida = new Trama(recebida);
-		System.out.println("recebida" + tramaRecebida.toString());
 		return tramaRecebida;
 
 	}
