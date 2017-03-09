@@ -7,12 +7,14 @@ public class Emissor {
 	private Trama tramaTransmitida;
 	private Hamming h;
 	private BitParidade b;
-//	private CRC7 crc7;
-//	private CRC12 crc12;
+	private CRC7 crc7;
+	private CRC12 crc12;
 
-	public Emissor(Hamming h, BitParidade b) {
+	public Emissor(Hamming h, BitParidade b, CRC7 crc7, CRC12 crc12) {
 		this.h = h;
 		this.b = b;
+		this.crc12 = crc12;
+		this.crc7 = crc7;
 	}
 	
 	public Trama getTramaTransmitida(int i, Trama tramaDados) {
@@ -25,16 +27,11 @@ public class Emissor {
 			tramaTransmitida = h.getTramaTransmitida();
 			break;
 		case 3:
-//			System.out.println("CRC Grau 3");
-//			CRCReceptorGrau8 crcGrau3 = new CRCReceptorGrau8(dados);
-//			Transmitida = new Trama(crcGrau3.tramaFCSEmissor());
-//			break;
-
+			tramaTransmitida = crc7.getTransmitida(tramaDados);
+			break;
 		case 4:
-//			System.out.println("CRC Grau 8");
-//			CRCReceptorGrau8 crcGrau8 = new CRCReceptorGrau8(trama_bits.getTrama());
-//			Transmitida = new Trama(crcGrau8.tramaFCSEmissor());
-//			break;
+			tramaTransmitida = crc12.getTransmitida(tramaDados);
+			break;
 		}
 
 		return tramaTransmitida;

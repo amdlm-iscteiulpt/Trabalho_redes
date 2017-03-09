@@ -1,8 +1,10 @@
 package novoTrabalho;
 
+import java.util.ArrayList;
+
 public class CRC7 {
 
-	private int[] trama_recebida = {1,1,1,1,0,0,0};
+	private ArrayList<Integer> trama_recebida = new ArrayList<Integer>();
 
 	private int C0 = 0;
 	private int C1 = 0;
@@ -12,36 +14,73 @@ public class CRC7 {
 	private int C1_anterior = 0;
 	private int C2_anterior = 0;
 
-	public void crc(Trama dados) {
-		C2_anterior = trama_recebida[0];
-		C1_anterior = trama_recebida[1];
-		C0_anterior = trama_recebida[2];
-		
-		for (int i = 3; i < trama_recebida.length; i++) {
-			C0 = xor(trama_recebida[i], C2_anterior);
+	public void crc() {
+		C2_anterior = trama_recebida.get(0);
+		C1_anterior = trama_recebida.get(1);
+		C0_anterior = trama_recebida.get(2);
+
+		for (int i = 3; i < trama_recebida.size(); i++) {
+			C0 = xor(trama_recebida.get(i), C2_anterior);
 			C1 = xor(C0_anterior, C2_anterior);
 			C2 = C1_anterior;
-			
+
 			C2_anterior = C2;
 			C1_anterior = C1;
 			C0_anterior = C0;
-			
+
 		}
-		System.out.println(C2);
-		System.out.println(C1);
-		System.out.println(C0);
 	}
-	
-	
-	private int xor(int i, int j){
-		if(i!=j){
+
+	private int xor(int i, int j) {
+		if (i != j) {
 			return 1;
-		}
-		else{
+		} else {
 			return 0;
 		}
 	}
+
+	private void setRecebida(Trama dados) {
+		System.out.println("dados " + dados.toString());
+		ArrayList<Integer> arrayDados = dados.getTrama();
+		for (int i = 0; i < arrayDados.size(); i++) {
+			trama_recebida.add(arrayDados.get(i));
+		}
+		for (int i = 0; i < 3; i++) {
+			trama_recebida.add(0);
+		}
 	
+	}
+	
+	public boolean tramaErrada(Trama recebida) {
+		ArrayList<Integer> arrayRecebida = recebida.getTrama();
+		trama_recebida.clear();
+		for (Integer i : arrayRecebida) {
+			trama_recebida.add(i);
+		}	
+		crc();
+		
+		if(C2 == 0 && C1 == 0 && C0 == 0){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	public Trama getTransmitida(Trama dados) {
+		setRecebida(dados);
+		crc();
+		ArrayList<Integer> transmitida = dados.getTrama();
+		transmitida.add(C2);
+		transmitida.add(C1);
+		transmitida.add(C0);
+		
+		Trama tramaTransmitida = new Trama (transmitida);
+		
+		return tramaTransmitida;
+		
+	}
+
 	public static void main(String[] args) {
 		CRC7 a = new CRC7();
 		a.crc();

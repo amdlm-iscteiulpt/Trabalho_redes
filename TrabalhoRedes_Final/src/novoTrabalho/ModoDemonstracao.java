@@ -9,11 +9,13 @@ public class ModoDemonstracao {
 	private Trama tramaTransmitida;
 	private Trama tramaRecebida; //usem esta para achar erros 
 	private Emissor emissor;
+	private Receptor receptor;
 	private CanalRuidoso canalRuidoso;
 
-	public ModoDemonstracao(Emissor e, CanalRuidoso cr) {
+	public ModoDemonstracao(Emissor e, CanalRuidoso cr, Receptor r) {
 		this.emissor = e;
 		this.canalRuidoso = cr;
+		this.receptor = r;
 	}
 
 	public void inicia() {
@@ -34,21 +36,16 @@ public class ModoDemonstracao {
 			break;
 		case 3:
 			System.out.println("CRC Grau 3");
-			
-			// CRCReceptorGrau8 crcGrau3 = new
-			// CRCReceptorGrau8(trama_bits.getTrama());
-			// Transmitida = new Trama(crcGrau3.tramaFCSEmissor());
-			
+			tramaTransmitida = emissor.getTramaTransmitida(3, tramaDados);
+			getRecebida(scanner);
+			receptor.verificaErros(3, tramaRecebida, tramaTransmitida);
 			break;
-
 		case 4:
 			System.out.println("CRC Grau 8");
-			// bits_dados(scanner);
-			// CRCReceptorGrau8 crcGrau8 = new
-			// CRCReceptorGrau8(trama_bits.getTrama());
-			// Transmitida = new Trama(crcGrau8.tramaFCSEmissor());
-			// padra_erro(scanner);
-			break;
+			tramaTransmitida = emissor.getTramaTransmitida(4, tramaDados);
+			getRecebida(scanner);
+			receptor.verificaErros(4, tramaRecebida, tramaTransmitida);
+			break;		
 		default:
 			System.out.println("Numero errado, Tente outra vez!");
 			menu();
