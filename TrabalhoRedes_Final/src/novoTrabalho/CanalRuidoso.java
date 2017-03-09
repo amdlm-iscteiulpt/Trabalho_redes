@@ -12,7 +12,6 @@ public class CanalRuidoso {
 		for (int i = 0; i < transmitida.size(); i++) {
 			int x = xor(transmitida.get(i), padrao.get(i));
 			recebida.add(x);
-
 		}
 
 		Trama tramaRecebida = new Trama(recebida);

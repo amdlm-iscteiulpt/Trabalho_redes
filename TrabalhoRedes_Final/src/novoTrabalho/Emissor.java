@@ -7,6 +7,8 @@ public class Emissor {
 	private Trama tramaTransmitida;
 	private Hamming h;
 	private BitParidade b;
+//	private CRC7 crc7;
+//	private CRC12 crc12;
 
 	public Emissor(Hamming h, BitParidade b) {
 		this.h = h;

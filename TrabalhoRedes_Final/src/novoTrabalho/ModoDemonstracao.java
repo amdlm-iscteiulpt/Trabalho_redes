@@ -33,12 +33,12 @@ public class ModoDemonstracao {
 			getRecebida(scanner);
 			break;
 		case 3:
-			// System.out.println("CRC Grau 3");
-			// bits_dados(scanner);
+			System.out.println("CRC Grau 3");
+			
 			// CRCReceptorGrau8 crcGrau3 = new
 			// CRCReceptorGrau8(trama_bits.getTrama());
 			// Transmitida = new Trama(crcGrau3.tramaFCSEmissor());
-			// padra_erro(scanner);
+			
 			break;
 
 		case 4:
