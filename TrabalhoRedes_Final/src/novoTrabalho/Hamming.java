@@ -7,7 +7,6 @@ public class Hamming {
 	private ArrayList<Integer> listaP4 = new ArrayList<Integer>();
 	private ArrayList<Integer> listaP2 = new ArrayList<Integer>();
 	private ArrayList<Integer> listaP1 = new ArrayList<Integer>();
-	private ArrayList<Integer> listaDados;
 	private int p1;
 	private int p2;
 	private int p4;
@@ -31,14 +30,12 @@ public class Hamming {
 	}
 
 	public int calculoP_C(ArrayList<Integer> p, Trama dados) {
-		addMatriz();
-		ArrayList<Integer> listaDados = dados.getTrama();
+		ArrayList<Integer >listaDados = dados.getTrama();
 		ArrayList<Integer> lista = new ArrayList<>();
 		int c = 0;
 		for (int i = 0; i < p.size(); i++) {
 			lista.add(listaDados.get(p.get(i)));
 		}
-
 		for (int i = 0; i < lista.size(); i++) {
 			c = xor(c, lista.get(i));
 		}
@@ -55,7 +52,8 @@ public class Hamming {
 	}
 
 	public Trama calculoHamming(Trama dados) {
-		listaDados = dados.getTrama();
+		addMatriz();
+		ArrayList<Integer>listaDados = dados.getTrama();
 		p1 = calculoP_C(listaP1, dados);
 		p2 = calculoP_C(listaP2, dados);
 		p4 = calculoP_C(listaP4, dados);
@@ -68,10 +66,15 @@ public class Hamming {
 
 	public boolean errosHamming(Trama tramaRecebida) {
 
-		int c1 = xor(p1, calculoP_C(listaP1, tramaRecebida));
-		int c2 = xor(p2, calculoP_C(listaP2, tramaRecebida));
-		int c4 = xor(p4, calculoP_C(listaP4, tramaRecebida));
-
+		ArrayList<Integer>listaRecebida= tramaRecebida.getTrama();
+		Trama tramaX= new Trama(""+listaRecebida.get(2)+listaRecebida.get(4)+listaRecebida.get(5)+listaRecebida.get(6));
+		
+		int c1 = xor(p1, calculoP_C(listaP1, tramaX));
+		int c2 = xor(p2, calculoP_C(listaP2, tramaX));
+		int c4 = xor(p4, calculoP_C(listaP4, tramaX));
+		
+		//SO NO X Ã‰ QUE DETETA ERROS?
+		
 		String bin = "" + c4 + c2 + c1;
 		int posicao = Integer.parseInt(bin, 2);
 
@@ -79,7 +82,7 @@ public class Hamming {
 			System.out.println("Resultado: Existe um erro na Posicao " + posicao + ".");
 			return true;
 		} else {
-			System.out.println("Resultado: Não existem Erros.");
+			System.out.println("Resultado: Nao existem Erros.");
 			return false;
 		}
 
