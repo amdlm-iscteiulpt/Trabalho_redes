@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class CanalRuidoso {
 
-	public final double[] pErroBit = { 0.000001, 0.00001, 0.0001, 0.001, 0.01, 0.1, 0.125, 0.25, 0.5 };
+	// public final double[] pErroBit = { 0.000001, 0.00001, 0.0001, 0.001,
+	// 0.01, 0.1, 0.125, 0.25, 0.5 };
 	private Trama tramaPadraoErro;
 
 	public Trama getRecebida(Trama tramaTransmitida, Trama tramaPadraoErro) {
@@ -22,7 +23,7 @@ public class CanalRuidoso {
 
 	}
 
-	public Trama gerarTramasErros(int opcao) {
+	public Trama gerarTramasErros(int opcao, double Pbit) {
 
 		int tamanho;
 		switch (opcao) {
@@ -39,10 +40,8 @@ public class CanalRuidoso {
 			break;
 		}
 
-		for (int y = 0; y < pErroBit.length; y++) {
-			tramaPadraoErro = (tramaErros(tamanho, pErroBit[y]));
-			//System.out.println("Trama de Erros Gerada E: " + tramaPadraoErro);
-		}
+		tramaPadraoErro = (tramaErros(tamanho, Pbit));
+
 		return tramaPadraoErro;
 
 	}
@@ -50,7 +49,7 @@ public class CanalRuidoso {
 	public Trama tramaErros(int tamanho, double Pbit) {
 		Trama trama = new Trama(tamanho);
 		for (int i = 0; i < tamanho; i++) {
-			
+
 			trama.add(randomBit(Pbit));
 		}
 

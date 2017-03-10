@@ -14,24 +14,25 @@ public class ModoSimulacao {
 	private Trama tramaErroPadrao;
 	private Trama tramaTransmitida;
 	private Trama tramaRecebida;
-
+	
 	public ModoSimulacao(Emissor e, CanalRuidoso cr, Receptor r) {
 		this.e = e;
 		this.cr = cr;
 		this.r = r;
 	}
 
-	public void inicia(int opcao) {
+	public void inicia(int opcao, double perrobit) {
 		Trama tramaDados = gerarTramaDados();
 		if (opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4) {
 			tramaTransmitida = e.getTramaTransmitida(opcao, tramaDados);
 			sendTransmitida();
-			tramaErroPadrao = cr.gerarTramasErros(opcao);
+			tramaErroPadrao = cr.gerarTramasErros(opcao, perrobit);
 			sendErroPadrao();
 			tramaRecebida = cr.getRecebida(tramaTransmitida, tramaErroPadrao);
 			sendRecebida();
 			r.verificaErros(opcao, tramaRecebida);
 			r.conclusao(opcao, tramaRecebida, tramaTransmitida);
+			
 		} else {
 			System.out.println("Numero Errado. Tente novamente.");
 			menu();
