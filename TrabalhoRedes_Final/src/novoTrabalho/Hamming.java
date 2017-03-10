@@ -65,7 +65,7 @@ public class Hamming {
 		return tramaTransmitida;
 	}
 
-	public boolean errosHamming(Trama tramaRecebida) {
+	public boolean errosHamming(Trama tramaRecebida, Trama padraoErros) {
 
 		ArrayList<Integer>listaRecebida= tramaRecebida.getTrama();
 		Trama tramaX= new Trama(""+listaRecebida.get(2)+listaRecebida.get(4)+listaRecebida.get(5)+listaRecebida.get(6));
@@ -76,8 +76,15 @@ public class Hamming {
 		
 		String bin = "" + c4 + c2 + c1;
 		posicao = Integer.parseInt(bin, 2);
-
-		if (posicao != 0) {	
+		
+		int c=0;
+		for(int i=0 ; i<padraoErros.getTrama().size();i++){
+			if(padraoErros.getTrama().get(i)==1){
+				c++;
+			}
+			
+		}
+		if (posicao != 0 && c==1) {	
 			return true;
 		} else {
 			return false;

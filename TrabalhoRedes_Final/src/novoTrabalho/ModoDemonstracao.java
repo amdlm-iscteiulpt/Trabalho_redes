@@ -28,25 +28,25 @@ public class ModoDemonstracao {
 			System.out.println("Bit Paridade");
 			tramaTransmitida = emissor.getTramaTransmitida(1, tramaDados);
 			getRecebida(scanner);
-			receptor.verificaErros(1, tramaRecebida, tramaTransmitida);
+			receptor.verificaErros(1, tramaRecebida, tramaTransmitida,tramaErroPadrao);
 			break;
 		case 2:
 			System.out.println("Hamming");
 			tramaTransmitida = emissor.getTramaTransmitida(2, tramaDados);
 			getRecebida(scanner);
-			receptor.verificaErros(2, tramaRecebida, tramaTransmitida);
+			receptor.verificaErros(2, tramaRecebida, tramaTransmitida,tramaErroPadrao);
 			break;
 		case 3:
 			System.out.println("CRC Grau 3");
 			tramaTransmitida = emissor.getTramaTransmitida(3, tramaDados);
 			getRecebida(scanner);
-			receptor.verificaErros(3, tramaRecebida, tramaTransmitida);
+			receptor.verificaErros(3, tramaRecebida, tramaTransmitida,tramaErroPadrao);
 			break;
 		case 4:
 			System.out.println("CRC Grau 8");
 			tramaTransmitida = emissor.getTramaTransmitida(4, tramaDados);
 			getRecebida(scanner);
-			receptor.verificaErros(4, tramaRecebida, tramaTransmitida);
+			receptor.verificaErros(4, tramaRecebida, tramaTransmitida,tramaErroPadrao);
 			break;		
 		default:
 			System.out.println("Numero errado, Tente outra vez!");

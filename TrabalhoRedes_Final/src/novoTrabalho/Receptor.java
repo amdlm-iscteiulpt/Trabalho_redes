@@ -14,7 +14,7 @@ public class Receptor {
 		this.crc12 = crc12;
 	}
 
-	public void verificaErros(int i, Trama recebida, Trama transmitida) {
+	public void verificaErros(int i, Trama recebida, Trama transmitida, Trama erros) {
 		switch (i) {
 		case 1:
 			if (b.errosBitParidade(recebida))
@@ -24,7 +24,7 @@ public class Receptor {
 
 			break;
 		case 2:
-			if (h.errosHamming(recebida))
+			if (h.errosHamming(recebida,erros))
 				System.out.println("Resultado: Trama recebida COM erros na posicao "+ h.getPosicao());
 			else
 				igualdadeEntreReT(recebida, transmitida);
