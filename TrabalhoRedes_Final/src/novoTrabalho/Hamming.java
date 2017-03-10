@@ -66,8 +66,9 @@ public class Hamming {
 	}
 
 	public boolean errosHamming(Trama tramaRecebida, Trama padraoErros) {
-
+		
 		ArrayList<Integer>listaRecebida= tramaRecebida.getTrama();
+		
 		Trama tramaX= new Trama(""+listaRecebida.get(2)+listaRecebida.get(4)+listaRecebida.get(5)+listaRecebida.get(6));
 		
 		int c1 = xor(listaRecebida.get(0), calculoP_C(listaP1, tramaX));
@@ -84,6 +85,7 @@ public class Hamming {
 			}
 			
 		}
+	
 		if (posicao != 0 && c==1) {	
 			return true;
 		} else {

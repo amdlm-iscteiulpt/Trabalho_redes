@@ -54,7 +54,7 @@ public class Receptor {
 		System.out.println(tramaRecebida);
 		System.out.println(tramaTransmitida);
 		if (!tramaRecebida.getTrama().equals(tramaTransmitida.getTrama()))
-			System.out.println("Resultado: Trama recebida COM erros que nao foram corrigidos");
+			System.out.println("Resultado: Trama recebida COM erros que nao foram detetados");
 		else
 			System.out.println("Resultado: Trama recebida SEM erros.");
 
