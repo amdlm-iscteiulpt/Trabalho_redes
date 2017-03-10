@@ -24,8 +24,10 @@ public class Receptor {
 
 			break;
 		case 2:
-			if (h.errosHamming(recebida,erros))
+			if (h.errosHamming(recebida,erros)){
 				System.out.println("Resultado: Trama recebida COM erros na posicao "+ h.getPosicao());
+				System.out.println("Trama corrigida:" + transmitida);
+			}
 			else
 				igualdadeEntreReT(recebida, transmitida);
 
@@ -52,7 +54,7 @@ public class Receptor {
 		System.out.println(tramaRecebida);
 		System.out.println(tramaTransmitida);
 		if (!tramaRecebida.getTrama().equals(tramaTransmitida.getTrama()))
-			System.out.println("Resultado: Trama recebida COM erros que n�o foram detectados");
+			System.out.println("Resultado: Trama recebida COM erros que nao foram corrigidos");
 		else
 			System.out.println("Resultado: Trama recebida SEM erros.");
 
