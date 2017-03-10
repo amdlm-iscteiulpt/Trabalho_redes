@@ -80,8 +80,4 @@ public class CRC7 {
 		
 	}
 
-	public static void main(String[] args) {
-		CRC7 a = new CRC7();
-		a.crc();
-	}
 }

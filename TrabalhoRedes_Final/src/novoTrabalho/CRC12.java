@@ -110,11 +110,5 @@ public class CRC12 {
 			return true;
 		}
 	}
-	
-	public static void main(String[] args) {
-		CRC12 a = new CRC12();
-		a.crc();
-	}
-
 
 }
