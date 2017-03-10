@@ -41,7 +41,7 @@ public class Receptor {
 			}
 		case COM_ERROS:
 			if (i == 3) {
-				//recebida = h.tramaCorrigida(h.getPosicao(), recebida);
+				// recebida = h.tramaCorrigida(h.getPosicao(), recebida);
 				if (!recebida.getTrama().equals(transmitida.getTrama())) {
 					// System.out.println("Trama mal corrigida: "+ recebida);
 					recebida.setEstado(Estado.COM_ERROS_MAL_CORRIGIDA);
