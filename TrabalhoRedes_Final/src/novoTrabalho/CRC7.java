@@ -40,32 +40,27 @@ public class CRC7 {
 	}
 
 	private void setRecebida(Trama dados) {
-		ArrayList<Integer> arrayDados = dados.getTrama();
-		for (int i = 0; i < arrayDados.size(); i++) {
-			trama_recebida.add(arrayDados.get(i));
-		}
-		for (int i = 0; i < 3; i++) {
-			trama_recebida.add(0);
-		}
-	
-	}
-	
-	public boolean tramaErrada(Trama recebida) {
-		ArrayList<Integer> arrayRecebida = recebida.getTrama();
 		trama_recebida.clear();
-		for (Integer i : arrayRecebida) {
-			trama_recebida.add(i);
-		}	
+		trama_recebida = dados.getTrama();
+		trama_recebida.add(0);
+		trama_recebida.add(0);
+		trama_recebida.add(0);
+
+	}
+
+	public void tramaErrada(Trama recebida) {
+		trama_recebida.clear();
+		trama_recebida = recebida.getTrama();
+
 		crc();
-		
-		if(C2 == 0 && C1 == 0 && C0 == 0){
-			return false;
-		}
-		else{
-			return true;
+
+		if (C2 == 0 && C1 == 0 && C0 == 0) {
+			recebida.setEstado(Estado.SEM_ERROS);
+		} else {
+			recebida.setEstado(Estado.COM_ERROS);
 		}
 	}
-	
+
 	public Trama getTransmitida(Trama dados) {
 		setRecebida(dados);
 		crc();
@@ -73,11 +68,11 @@ public class CRC7 {
 		transmitida.add(C2);
 		transmitida.add(C1);
 		transmitida.add(C0);
-		
-		Trama tramaTransmitida = new Trama (transmitida);
-		
+
+		Trama tramaTransmitida = new Trama(transmitida);
+
 		return tramaTransmitida;
-		
+
 	}
 
 }

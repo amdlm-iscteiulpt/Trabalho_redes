@@ -3,7 +3,7 @@ package novoTrabalho;
 import java.util.ArrayList;
 
 public class CRC12 {
-	//l
+	// l
 	private ArrayList<Integer> trama_recebida = new ArrayList<Integer>();
 
 	private int C0 = 0;
@@ -14,7 +14,6 @@ public class CRC12 {
 	private int C5 = 0;
 	private int C6 = 0;
 	private int C7 = 0;
-	
 
 	private int C0_anterior = 0;
 	private int C1_anterior = 0;
@@ -34,17 +33,17 @@ public class CRC12 {
 		C2_anterior = trama_recebida.get(5);
 		C1_anterior = trama_recebida.get(6);
 		C0_anterior = trama_recebida.get(7);
-		
+
 		for (int i = 8; i < trama_recebida.size(); i++) {
 			C0 = xor(trama_recebida.get(i), C7_anterior);
 			C1 = xor(C0_anterior, C7_anterior);
 			C2 = xor(C1_anterior, C7_anterior);
-			C3 =C2_anterior;
-			C4 =C3_anterior;
-			C5 =C4_anterior;
-			C6 =C5_anterior;
-			C7 =C6_anterior;
-			
+			C3 = C2_anterior;
+			C4 = C3_anterior;
+			C5 = C4_anterior;
+			C6 = C5_anterior;
+			C7 = C6_anterior;
+
 			C7_anterior = C7;
 			C6_anterior = C6;
 			C5_anterior = C5;
@@ -53,31 +52,32 @@ public class CRC12 {
 			C2_anterior = C2;
 			C1_anterior = C1;
 			C0_anterior = C0;
-			
+
 		}
 	}
-	
-	
-	private int xor(int i, int j){
-		if(i!=j){
+
+	private int xor(int i, int j) {
+		if (i != j) {
 			return 1;
-		}
-		else{
+		} else {
 			return 0;
 		}
 	}
-	
+
 	private void setRecebida(Trama dados) {
-		ArrayList<Integer> arrayDados = dados.getTrama();
-		for (int i = 0; i < arrayDados.size(); i++) {
-			trama_recebida.add(arrayDados.get(i));
-		}
-		for (int i = 0; i < 8; i++) {
-			trama_recebida.add(0);
-		}
-	
+		trama_recebida = dados.getTrama();
+
+		trama_recebida.add(0);
+		trama_recebida.add(0);
+		trama_recebida.add(0);
+		trama_recebida.add(0);
+		trama_recebida.add(0);
+		trama_recebida.add(0);
+		trama_recebida.add(0);
+		trama_recebida.add(0);
+
 	}
-	
+
 	public Trama getTransmitida(Trama dados) {
 		setRecebida(dados);
 		crc();
@@ -90,24 +90,20 @@ public class CRC12 {
 		transmitida.add(C2);
 		transmitida.add(C1);
 		transmitida.add(C0);
-		
-		Trama tramaTransmitida = new Trama (transmitida);
-		return tramaTransmitida;	
+
+		Trama tramaTransmitida = new Trama(transmitida);
+		return tramaTransmitida;
 	}
-	
-	public boolean tramaErrada(Trama recebida) {
-		ArrayList<Integer> arrayRecebida = recebida.getTrama();
+
+	public void tramaErrada(Trama recebida) {
 		trama_recebida.clear();
-		for (Integer i : arrayRecebida) {
-			trama_recebida.add(i);
-		}	
+		trama_recebida = recebida.getTrama();
 		crc();
-		
-		if(C7 == 0&& C6 == 0 && C5 == 0 && C4 == 0 && C3 == 0 && C2 == 0 && C1 == 0 && C0 == 0){
-			return false;
-		}
-		else{
-			return true;
+
+		if (C7 == 0 && C6 == 0 && C5 == 0 && C4 == 0 && C3 == 0 && C2 == 0 && C1 == 0 && C0 == 0) {
+			recebida.setEstado(Estado.SEM_ERROS);
+		} else {
+			recebida.setEstado(Estado.COM_ERROS);;
 		}
 	}
 

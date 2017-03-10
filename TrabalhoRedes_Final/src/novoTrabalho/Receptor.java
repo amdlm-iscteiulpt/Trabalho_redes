@@ -14,49 +14,68 @@ public class Receptor {
 		this.crc12 = crc12;
 	}
 
-	public void verificaErros(int i, Trama recebida, Trama transmitida, Trama erros) {
+	public void verificaErros(int i, Trama recebida, Trama erros) {
 		switch (i) {
 		case 1:
-			if (b.errosBitParidade(recebida))
-				System.out.println("Resultado: Trama recebida COM erros.");
-			else
-				igualdadeEntreReT(recebida, transmitida);
-
+			b.errosBitParidade(recebida);
 			break;
 		case 2:
-			if (h.errosHamming(recebida,erros)){
-				System.out.println("Resultado: Trama recebida COM erros na posicao "+ h.getPosicao());
-				System.out.println("Trama corrigida:" + transmitida);
-			}
-			else
-				igualdadeEntreReT(recebida, transmitida);
-
+			h.errosHamming(recebida, erros);
 			break;
 		case 3:
-			if (crc7.tramaErrada(recebida))
-				System.out.println("Resultado: Trama recebida COM erros.");
-			else
-				igualdadeEntreReT(recebida, transmitida);
-
+			crc7.tramaErrada(recebida);
 			break;
 		case 4:
-			if (crc12.tramaErrada(recebida))
-				System.out.println("Resultado: Trama recebida COM erros.");
-			else
-				igualdadeEntreReT(recebida, transmitida);
-
+			crc12.tramaErrada(recebida);
 			break;
 		}
-
 	}
 
-	public void igualdadeEntreReT(Trama tramaRecebida, Trama tramaTransmitida) {
-		System.out.println(tramaRecebida);
-		System.out.println(tramaTransmitida);
+	public void conclusao(int i, Trama recebida, Trama transmitida, Trama erros) {
+		switch (recebida.getEstado()) {
+		case SEM_ERROS:
+			if (bitsDiferentes(recebida, transmitida) == 0) {
+				break;
+			} else {
+				recebida.setEstado(Estado.COM_ERROS_NAO_DETETADOS);
+			}
+		case COM_ERROS:
+			if (i == 3) {
+				//recebida = h.tramaCorrigida(h.getPosicao(), recebida);
+				if (!recebida.getTrama().equals(transmitida.getTrama())) {
+					// System.out.println("Trama mal corrigida: "+ recebida);
+					recebida.setEstado(Estado.COM_ERROS_MAL_CORRIGIDA);
+				} else {
+					recebida.setEstado(Estado.COM_ERROS_CORRIGIDA);
+					// System.out.println("Trama bem corrigida: "+ recebida);
+				}
+			}
+			break;
+		}
+	}
+
+	public int bitsDiferentes(Trama tramaRecebida, Trama tramaTransmitida) {
+		int c = 0;
 		if (!tramaRecebida.getTrama().equals(tramaTransmitida.getTrama()))
-			System.out.println("Resultado: Trama recebida COM erros que nao foram detetados");
+			return 0;
 		else
-			System.out.println("Resultado: Trama recebida SEM erros.");
+			for (int i = 0; i < tramaRecebida.getTrama().size(); i++) {
+				if (!tramaRecebida.getTrama().get(i).equals(tramaTransmitida.getTrama().get(i))) {
+					c++;
+				}
+			}
+		return c;
+	}
+
+	public boolean igualdadeEntreReT(Trama tramaRecebida, Trama tramaTransmitida) {
+
+		if (!tramaRecebida.getTrama().equals(tramaTransmitida.getTrama()))
+			return false;
+		// System.out.println("Resultado: Trama recebida COM erros que nao foram
+		// detetados");
+		else
+			return true;
+		// System.out.println("Resultado: Trama recebida SEM erros.");
 
 	}
 }

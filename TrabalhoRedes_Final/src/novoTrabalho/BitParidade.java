@@ -19,12 +19,12 @@ public class BitParidade {
 	
 	}
 	
-	public boolean errosBitParidade(Trama tramaRecebida){
+	public void errosBitParidade(Trama tramaRecebida){
 		if (tramaRecebida.contador() % 2 ==0){
-			return false;
+			tramaRecebida.setEstado(Estado.SEM_ERROS);
 		}
 		else{
-			return true;
+			tramaRecebida.setEstado(Estado.COM_ERROS);
 		}
 		
 	}
