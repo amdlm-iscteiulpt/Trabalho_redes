@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 public class Hamming {
 
-	private int p1 = 0;
-	private int p2 = 0;
-	private int p4 = 1;
 	private int posicao;
 
 	public int xor(int a, int b) {
@@ -18,6 +15,9 @@ public class Hamming {
 
 	public Trama calculoTramaTransmitida(Trama dados) {
 		ArrayList<Integer> listaDados = dados.getTrama();
+		int p1 = xor(xor(listaDados.get(0), listaDados.get(1)), listaDados.get(3));
+		int p2 = xor(xor(listaDados.get(0), listaDados.get(2)), listaDados.get(3));
+		int p4 = xor(xor(listaDados.get(1), listaDados.get(2)), listaDados.get(3));
 		Trama tramaTransmitida = new Trama(
 				"" + p1 + p2 + listaDados.get(0) + p4 + listaDados.get(1) + listaDados.get(2) + listaDados.get(3));
 		return tramaTransmitida;
@@ -26,6 +26,7 @@ public class Hamming {
 	public void errosHamming(Trama tramaRecebida) {
 
 		ArrayList<Integer> listaRecebida = tramaRecebida.getTrama();
+		System.out.println(tramaRecebida);
 		int c1 = xor(xor(xor(listaRecebida.get(0), listaRecebida.get(2)), listaRecebida.get(4)), listaRecebida.get(6));
 		int c2 = xor(xor(xor(listaRecebida.get(1), listaRecebida.get(2)), listaRecebida.get(5)), listaRecebida.get(6));
 		int c4 = xor(xor(xor(listaRecebida.get(3), listaRecebida.get(4)), listaRecebida.get(5)), listaRecebida.get(6));

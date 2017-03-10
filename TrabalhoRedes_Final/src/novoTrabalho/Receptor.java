@@ -6,6 +6,8 @@ public class Receptor {
 	private BitParidade b;
 	private CRC7 crc7;
 	private CRC12 crc12;
+	
+	
 
 	public Receptor(BitParidade b, Hamming h, CRC7 crc7, CRC12 crc12) {
 		this.b = b;
