@@ -10,6 +10,7 @@ public class Hamming {
 	private int p1;
 	private int p2;
 	private int p4;
+	private int posicao;
 
 	public void addMatriz() {
 		int[][] matriz = { { 0, 1, 1 }, { 1, 0, 1 }, { 1, 1, 0 }, { 1, 1, 1 } };
@@ -69,23 +70,23 @@ public class Hamming {
 		ArrayList<Integer>listaRecebida= tramaRecebida.getTrama();
 		Trama tramaX= new Trama(""+listaRecebida.get(2)+listaRecebida.get(4)+listaRecebida.get(5)+listaRecebida.get(6));
 		
-		int c1 = xor(p1, calculoP_C(listaP1, tramaX));
-		int c2 = xor(p2, calculoP_C(listaP2, tramaX));
-		int c4 = xor(p4, calculoP_C(listaP4, tramaX));
-		
-		//SO NO X É QUE DETETA ERROS?
+		int c1 = xor(listaRecebida.get(0), calculoP_C(listaP1, tramaX));
+		int c2 = xor(listaRecebida.get(1), calculoP_C(listaP2, tramaX));
+		int c4 = xor(listaRecebida.get(3), calculoP_C(listaP4, tramaX));
 		
 		String bin = "" + c4 + c2 + c1;
-		int posicao = Integer.parseInt(bin, 2);
+		posicao = Integer.parseInt(bin, 2);
 
-		if (posicao != 0) {
-			System.out.println("Resultado: Existe um erro na Posicao " + posicao + ".");
+		if (posicao != 0) {	
 			return true;
 		} else {
-			System.out.println("Resultado: Nao existem Erros.");
 			return false;
 		}
 
+	}
+	
+	public int getPosicao(){
+		return posicao;
 	}
 
 }
