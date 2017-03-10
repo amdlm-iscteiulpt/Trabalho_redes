@@ -14,13 +14,13 @@ public class Receptor {
 		this.crc12 = crc12;
 	}
 
-	public void verificaErros(int i, Trama recebida, Trama erros) {
+	public void verificaErros(int i, Trama recebida) {
 		switch (i) {
 		case 1:
 			b.errosBitParidade(recebida);
 			break;
 		case 2:
-			h.errosHamming(recebida, erros);
+			h.errosHamming(recebida);
 			break;
 		case 3:
 			crc7.tramaErrada(recebida);
@@ -31,23 +31,27 @@ public class Receptor {
 		}
 	}
 
-	public void conclusao(int i, Trama recebida, Trama transmitida, Trama erros) {
+	public void conclusao(int i, Trama recebida, Trama transmitida) {
 		switch (recebida.getEstado()) {
 		case SEM_ERROS:
-			if (bitsDiferentes(recebida, transmitida) == 0) {
+			if (igualdadeEntreReT(recebida, transmitida)) {
+				System.out.println("Conclusão: Trama sem erro(s).");
 				break;
 			} else {
 				recebida.setEstado(Estado.COM_ERROS_NAO_DETETADOS);
+				System.out.println("Conclusão: Trama com erro(s) não detectado(s).");
+				break;
 			}
 		case COM_ERROS:
 			if (i == 3) {
-				// recebida = h.tramaCorrigida(h.getPosicao(), recebida);
 				if (!recebida.getTrama().equals(transmitida.getTrama())) {
-					// System.out.println("Trama mal corrigida: "+ recebida);
+					System.out.println("Conclusão: Trama com erro(s) detectado(s) e não corrigida(s).");
 					recebida.setEstado(Estado.COM_ERROS_MAL_CORRIGIDA);
 				} else {
 					recebida.setEstado(Estado.COM_ERROS_CORRIGIDA);
-					// System.out.println("Trama bem corrigida: "+ recebida);
+					System.out.println("Conclusão: Trama com erro(s) detectado(s) e corrigida(s).");
+
+					
 				}
 			}
 			break;

@@ -40,24 +40,31 @@ public class CRC7 {
 	}
 
 	private void setRecebida(Trama dados) {
-		trama_recebida.clear();
-		trama_recebida = dados.getTrama();
+		ArrayList<Integer> arrayDados = dados.getTrama();
+		for (int i = 0; i < arrayDados.size(); i++) {
+			trama_recebida.add(arrayDados.get(i));
+		}
 		trama_recebida.add(0);
 		trama_recebida.add(0);
 		trama_recebida.add(0);
-
+		
+	
 	}
-
+	
 	public void tramaErrada(Trama recebida) {
+		ArrayList<Integer> arrayRecebida = recebida.getTrama();
 		trama_recebida.clear();
-		trama_recebida = recebida.getTrama();
-
+		for (Integer i : arrayRecebida) {
+			trama_recebida.add(i);
+		}	
 		crc();
 
 		if (C2 == 0 && C1 == 0 && C0 == 0) {
 			recebida.setEstado(Estado.SEM_ERROS);
+			System.out.println("Deteção CRC 7 bits: Trama sem erro(s) detectados.");
 		} else {
 			recebida.setEstado(Estado.COM_ERROS);
+			System.out.println("Deteção CRC 7 bits: Trama com erro(s) detectados.");
 		}
 	}
 

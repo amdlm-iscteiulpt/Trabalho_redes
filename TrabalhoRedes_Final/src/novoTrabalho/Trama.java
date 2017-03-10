@@ -22,6 +22,11 @@ public class Trama {
 		return trama;
 	}
 	
+	public Trama(int tamanho) {
+		trama = new ArrayList<Integer>(tamanho);
+		//tratarBits(bits);
+
+	}
 	
 	public int contador() {
 		int c = 0;

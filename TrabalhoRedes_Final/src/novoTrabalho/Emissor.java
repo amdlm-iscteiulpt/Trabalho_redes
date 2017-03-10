@@ -23,7 +23,7 @@ public class Emissor {
 			tramaTransmitida = b.calculoBitParidade(tramaDados);
 			break;
 		case 2:
-			tramaTransmitida = h.calculoHamming(tramaDados);
+			tramaTransmitida = h.calculoTramaTransmitida(tramaDados);
 			break;
 		case 3:
 			tramaTransmitida = crc7.getTransmitida(tramaDados);

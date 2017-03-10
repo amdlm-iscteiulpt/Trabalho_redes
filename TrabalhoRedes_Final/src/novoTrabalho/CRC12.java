@@ -65,19 +65,16 @@ public class CRC12 {
 	}
 
 	private void setRecebida(Trama dados) {
-		trama_recebida = dados.getTrama();
-
-		trama_recebida.add(0);
-		trama_recebida.add(0);
-		trama_recebida.add(0);
-		trama_recebida.add(0);
-		trama_recebida.add(0);
-		trama_recebida.add(0);
-		trama_recebida.add(0);
-		trama_recebida.add(0);
-
+		ArrayList<Integer> arrayDados = dados.getTrama();
+		for (int i = 0; i < arrayDados.size(); i++) {
+			trama_recebida.add(arrayDados.get(i));
+		}
+		for (int i = 0; i < 8; i++) {
+			trama_recebida.add(0);
+		}
+	
 	}
-
+	
 	public Trama getTransmitida(Trama dados) {
 		setRecebida(dados);
 		crc();
@@ -102,8 +99,10 @@ public class CRC12 {
 
 		if (C7 == 0 && C6 == 0 && C5 == 0 && C4 == 0 && C3 == 0 && C2 == 0 && C1 == 0 && C0 == 0) {
 			recebida.setEstado(Estado.SEM_ERROS);
+			System.out.println("Deteção CRC 12 bits: Trama sem erro(s) detectados.");
 		} else {
-			recebida.setEstado(Estado.COM_ERROS);;
+			recebida.setEstado(Estado.COM_ERROS);
+			System.out.println("Deteção CRC 12 bits: Trama com erro(s) detectados.");
 		}
 	}
 

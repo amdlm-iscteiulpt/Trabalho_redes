@@ -17,41 +17,21 @@ public class ModoDemonstracao {
 		this.canalRuidoso = cr;
 		this.receptor = r;
 	}
-
+	
 	public void inicia() {
 		menu();
 		Scanner scanner = new Scanner(System.in);	
 		int opcao = scanner.nextInt();
 		bitsDados(scanner);
-		switch (opcao) {
-		case 1:
-			System.out.println("Bit Paridade");
-			tramaTransmitida = emissor.getTramaTransmitida(1, tramaDados);
+		if(opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4){
+			tramaTransmitida = emissor.getTramaTransmitida(opcao, tramaDados);
 			getRecebida(scanner);
-			receptor.verificaErros(1, tramaRecebida, tramaTransmitida);
-			break;
-		case 2:
-			System.out.println("Hamming");
-			tramaTransmitida = emissor.getTramaTransmitida(2, tramaDados);
-			getRecebida(scanner);
-			receptor.verificaErros(2, tramaRecebida, tramaTransmitida);
-			break;
-		case 3:
-			System.out.println("CRC Grau 3");
-			tramaTransmitida = emissor.getTramaTransmitida(3, tramaDados);
-			getRecebida(scanner);
-			receptor.verificaErros(3, tramaRecebida, tramaTransmitida);
-			break;
-		case 4:
-			System.out.println("CRC Grau 8");
-			tramaTransmitida = emissor.getTramaTransmitida(4, tramaDados);
-			getRecebida(scanner);
-			receptor.verificaErros(4, tramaRecebida, tramaTransmitida);
-			break;		
-		default:
+			receptor.verificaErros(1, tramaRecebida);
+			receptor.conclusao(opcao, tramaRecebida, tramaTransmitida);
+		} else {
 			System.out.println("Numero errado, Tente outra vez!");
 			menu();
-			break;
+	
 		}
 	}
 
