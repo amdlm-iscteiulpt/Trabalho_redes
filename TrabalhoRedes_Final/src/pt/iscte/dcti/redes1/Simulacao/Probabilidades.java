@@ -22,29 +22,26 @@ public class Probabilidades {
 	}
 
 	public double Prob_sem_erros() {
-		double numero = N_TRAMAS_SEM_ERROS / N_TRAMAS;
-		numero = Double.valueOf(formato.format(numero));
-		return numero;
+		
+		return ((double) N_TRAMAS_SEM_ERROS) / N_TRAMAS;
 	}
 
 	public double Prob_com_erros_nao_detectadas() {
 
-		double numero = N_TRAMAS_ERROS_NAO_DETETADOS / N_TRAMAS;
-		numero = Double.valueOf(formato.format(numero));
-		return numero;
+		return ((double)N_TRAMAS_ERROS_NAO_DETETADOS) / N_TRAMAS;
+		
+		
 	}
 
 	public double Prb_com_erros_correctas() {
 
-		double numero = N_TRAMAS_CORRIGIDAS / N_TRAMAS;
-		numero = Double.valueOf(formato.format(numero));
-		return numero;
+		return ((double) N_TRAMAS_CORRIGIDAS) / N_TRAMAS;
+		
 	}
 
 	public double Valo_bits_errados() {
-		double numero = N_BITS_ERRADOS / (TAMANHO_TRAMAS * N_TRAMAS);
-		numero = Double.valueOf(formato.format(numero));
-		return numero;
+		return ((double) N_BITS_ERRADOS) / (TAMANHO_TRAMAS * N_TRAMAS);
+		
 	}
 
 }

@@ -62,10 +62,12 @@ public class MainSimulacao {
 			}
 			Probabilidades pb = new Probabilidades(N_TRAMAS_ERROS_NAO_DETETADOS, N_TRAMAS_SEM_ERROS,
 					N_TRAMAS_CORRIGIDAS, N_BITS_ERRADOS, nr_vezes);
+			
 			System.out.println(pb.Prob_sem_erros());
 			System.out.println(pb.Prob_com_erros_nao_detectadas());
 			System.out.println(pb.Prb_com_erros_correctas());
 			System.out.println(pb.Valo_bits_errados());
+			
 			escreverFicheiro(pErroBit[y],pb.Prob_sem_erros(), pb.Valo_bits_errados(),pb.Prob_com_erros_nao_detectadas(),pb.Prb_com_erros_correctas());
 		}
 
