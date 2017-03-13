@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,7 +19,7 @@ import novoTrabalho.Receptor;
 
 public class MainSimulacao {
 
-	private static int nr_vezes = 10000000;
+	private static int nr_vezes = 1000000;
 	public static int N_TRAMAS_SEM_ERROS = 0;
 	public static int N_TRAMAS_ERROS_NAO_DETETADOS = 0;
 	public static int N_TRAMAS_CORRIGIDAS = 0;
@@ -30,6 +31,7 @@ public class MainSimulacao {
 	}
 
 	public static void main(String[] args) {
+		long inicio = System.currentTimeMillis();
 		int i = 0;
 		menu();
 		Scanner scanner = new Scanner(System.in);
@@ -41,6 +43,10 @@ public class MainSimulacao {
 			N_BITS_ERRADOS = 0;
 			
 			for (int t = 0; t < nr_vezes; t++) {
+				
+				System.out.println( "Y-> " + y);
+				
+				
 				Hamming m = new Hamming();
 				BitParidade b = new BitParidade();
 				CRC7 crc7 = new CRC7();
@@ -59,22 +65,16 @@ public class MainSimulacao {
 				N_TRAMAS_CORRIGIDAS = r.getN_TRAMAS_CORRIGIDAS();
 				N_BITS_ERRADOS = r.getN_BITS_ERRADOS();
 
-				System.out.println(N_TRAMAS_ERROS_NAO_DETETADOS);
-				System.out.println(N_TRAMAS_SEM_ERROS);
-				System.out.println(N_TRAMAS_CORRIGIDAS);
-				System.out.println(N_BITS_ERRADOS);
+
 
 			}
 			Probabilidades pb = new Probabilidades(N_TRAMAS_ERROS_NAO_DETETADOS, N_TRAMAS_SEM_ERROS,
 					N_TRAMAS_CORRIGIDAS, N_BITS_ERRADOS, nr_vezes, opcao);
-			
-			System.out.println(pb.Prob_sem_erros());
-			System.out.println(pb.Prob_com_erros_nao_detectadas());
-			System.out.println(pb.Prb_com_erros_correctas());
-			System.out.println(pb.Valo_bits_errados());
-			
+		
 			escreverFicheiro(pErroBit[y],opcao, pb.Prob_sem_erros(), pb.Valo_bits_errados(),pb.Prob_com_erros_nao_detectadas(),pb.Prb_com_erros_correctas());
 		}
+		
+		System.out.println((System.currentTimeMillis()-inicio)/1000/60);
 
 	}
 
