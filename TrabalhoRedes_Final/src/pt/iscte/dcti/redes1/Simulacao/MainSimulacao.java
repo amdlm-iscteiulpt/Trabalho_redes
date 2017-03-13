@@ -18,7 +18,7 @@ import novoTrabalho.Receptor;
 
 public class MainSimulacao {
 
-	private static int nr_vezes = 10000;
+	private static int nr_vezes = 10000000;
 	public static int N_TRAMAS_SEM_ERROS = 0;
 	public static int N_TRAMAS_ERROS_NAO_DETETADOS = 0;
 	public static int N_TRAMAS_CORRIGIDAS = 0;
@@ -73,13 +73,13 @@ public class MainSimulacao {
 			System.out.println(pb.Prb_com_erros_correctas());
 			System.out.println(pb.Valo_bits_errados());
 			
-			escreverFicheiro(pErroBit[y],pb.Prob_sem_erros(), pb.Valo_bits_errados(),pb.Prob_com_erros_nao_detectadas(),pb.Prb_com_erros_correctas());
+			escreverFicheiro(pErroBit[y],opcao, pb.Prob_sem_erros(), pb.Valo_bits_errados(),pb.Prob_com_erros_nao_detectadas(),pb.Prb_com_erros_correctas());
 		}
 
 	}
 
-	public static void escreverFicheiro(double y, double Prob_sem_erros, double Valo_bits_errados, double Prob_com_erros_nao_detectadas, double Prb_com_erros_correctas) {
-		File arquivo = new File("Probabilidades.txt");
+	public static void escreverFicheiro(double y, int opcao, double Prob_sem_erros, double Valo_bits_errados, double Prob_com_erros_nao_detectadas, double Prb_com_erros_correctas) {
+		File arquivo = new File("/Users/Mafaldacga/Probabilidades" + opcao + ".txt");
 		try {
 			if (!arquivo.exists()) {
 				arquivo.createNewFile();
@@ -88,7 +88,7 @@ public class MainSimulacao {
 			FileWriter fw = new FileWriter(arquivo, true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			//bw.write("Peb	Pse	#erros	Pnd|e	Pcc|e	");
-			bw.write(y+","+Prob_sem_erros+","+Valo_bits_errados+","+Prob_com_erros_nao_detectadas+","+Prb_com_erros_correctas);
+			bw.write(y+"	"+Prob_sem_erros+"	"+Valo_bits_errados+"	"+Prob_com_erros_nao_detectadas+"	"+Prb_com_erros_correctas);
 			bw.newLine();
 
 			bw.close();

@@ -104,11 +104,10 @@ public class Receptor {
 
 		if (!tramaRecebida.getTrama().equals(tramaTransmitida.getTrama()))
 			return false;
-		// System.out.println("Resultado: Trama recebida COM erros que nao foram
-		// detetados");
+		
 		else
 			return true;
-		// System.out.println("Resultado: Trama recebida SEM erros.");
+		
 
 	}
 
