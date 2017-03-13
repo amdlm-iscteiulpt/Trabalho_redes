@@ -1,6 +1,7 @@
 package novoTrabalho;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CanalRuidoso {
 
@@ -49,7 +50,6 @@ public class CanalRuidoso {
 	public Trama tramaErros(int tamanho, double Pbit) {
 		Trama trama = new Trama(tamanho);
 		for (int i = 0; i < tamanho; i++) {
-
 			trama.add(randomBit(Pbit));
 		}
 
@@ -57,12 +57,30 @@ public class CanalRuidoso {
 	}
 
 	public int randomBit(double Pb) {
-		double r = Math.random();
+		double r = getRandomValue(new Random(), 0,1,6);
+		//System.out.println("RANDOM ->" + r);
 		if (r > Pb) {
 			return 1;
 		}
 		return 0;
 	}
+	
+	public double getRandomValue( Random random,
+		     int lowerBound,
+		     int upperBound,
+		     int decimalPlaces){
+
+		    if(lowerBound < 0 || upperBound <= lowerBound || decimalPlaces < 0){
+		        throw new IllegalArgumentException("Put error message here");
+		    }
+
+		     double dbl =
+		        ((random == null ? new Random() : random).nextDouble() //
+		            * (upperBound - lowerBound))
+		            + lowerBound;
+		    return ((double) dbl);
+
+		}
 
 	public int xor(int v1, int v2) {
 		if (v1 == v2) {

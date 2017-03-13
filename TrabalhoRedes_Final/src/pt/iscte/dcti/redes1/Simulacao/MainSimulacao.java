@@ -35,6 +35,11 @@ public class MainSimulacao {
 		Scanner scanner = new Scanner(System.in);
 		int opcao = scanner.nextInt();
 		for (int y = 0; y < pErroBit.length; y++) {
+			N_TRAMAS_SEM_ERROS = 0;
+			N_TRAMAS_ERROS_NAO_DETETADOS = 0;
+			N_TRAMAS_CORRIGIDAS = 0;
+			N_BITS_ERRADOS = 0;
+			
 			for (int t = 0; t < nr_vezes; t++) {
 				Hamming m = new Hamming();
 				BitParidade b = new BitParidade();
@@ -61,7 +66,7 @@ public class MainSimulacao {
 
 			}
 			Probabilidades pb = new Probabilidades(N_TRAMAS_ERROS_NAO_DETETADOS, N_TRAMAS_SEM_ERROS,
-					N_TRAMAS_CORRIGIDAS, N_BITS_ERRADOS, nr_vezes);
+					N_TRAMAS_CORRIGIDAS, N_BITS_ERRADOS, nr_vezes, opcao);
 			
 			System.out.println(pb.Prob_sem_erros());
 			System.out.println(pb.Prob_com_erros_nao_detectadas());
@@ -82,8 +87,8 @@ public class MainSimulacao {
 
 			FileWriter fw = new FileWriter(arquivo, true);
 			BufferedWriter bw = new BufferedWriter(fw);
-			//bw.write("Peb"+"				Pse"+"			#erros"+"				Pnd|e"+"				Pcc|e"+"		");
-			bw.write(y+"				"+Prob_sem_erros+"			"+Valo_bits_errados+"				"+Prob_com_erros_nao_detectadas+"				"+Prb_com_erros_correctas+"		");
+			//bw.write("Peb	Pse	#erros	Pnd|e	Pcc|e	");
+			bw.write(y+","+Prob_sem_erros+","+Valo_bits_errados+","+Prob_com_erros_nao_detectadas+","+Prb_com_erros_correctas);
 			bw.newLine();
 
 			bw.close();
