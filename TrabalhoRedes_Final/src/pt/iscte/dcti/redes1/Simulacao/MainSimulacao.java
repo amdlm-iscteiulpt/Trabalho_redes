@@ -19,7 +19,7 @@ import novoTrabalho.Receptor;
 
 public class MainSimulacao {
 
-	private static int nr_vezes = 1000000;
+	private static int nr_vezes = 10;
 	public static int N_TRAMAS_SEM_ERROS = 0;
 	public static int N_TRAMAS_ERROS_NAO_DETETADOS = 0;
 	public static int N_TRAMAS_CORRIGIDAS = 0;

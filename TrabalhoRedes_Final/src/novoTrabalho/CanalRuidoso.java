@@ -60,9 +60,9 @@ public class CanalRuidoso {
 		double r = getRandomValue(new Random(), 0,1,6);
 		//System.out.println("RANDOM ->" + r);
 		if (r > Pb) {
-			return 1;
+			return 0;
 		}
-		return 0;
+		return 1;
 	}
 	
 	public double getRandomValue( Random random,
