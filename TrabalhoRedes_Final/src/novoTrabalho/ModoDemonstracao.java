@@ -26,7 +26,7 @@ public class ModoDemonstracao {
 		if(opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4){
 			tramaTransmitida = emissor.getTramaTransmitida(opcao, tramaDados);
 			getRecebida(scanner);
-			receptor.verificaErros(1, tramaRecebida);
+			receptor.verificaErros(opcao, tramaRecebida);
 			receptor.conclusao(opcao, tramaRecebida, tramaTransmitida);
 		} else {
 			System.out.println("Numero errado, Tente outra vez!");
