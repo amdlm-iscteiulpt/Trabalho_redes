@@ -51,7 +51,7 @@ public class Probabilidades {
 
 	public double Prb_com_erros_correctas() {
 
-		return ((double) N_TRAMAS_CORRIGIDAS) / N_TRAMAS;
+		return ((double) N_TRAMAS_CORRIGIDAS) / (N_TRAMAS - N_TRAMAS_SEM_ERROS) ;
 		
 	}
 

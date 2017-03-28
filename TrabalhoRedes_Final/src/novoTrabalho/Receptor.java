@@ -55,18 +55,18 @@ public class Receptor {
 					Trama corrigida= h.tramaCorrigida(h.getPosicao(), recebida);
 					
 					if(!corrigida.getTrama().equals(transmitida.getTrama())){
-						System.out.println("corrigda"+corrigida.getTrama());
-						System.out.println("transmitida"+transmitida.getTrama());
+					
 					System.out.println("Conclusão: Trama com erro(s) detectado(s) e não corrigida(s).");
 					recebida.setEstado(Estado.COM_ERROS_MAL_CORRIGIDA);
 					}
 					else {
 					recebida.setEstado(Estado.COM_ERROS_CORRIGIDA);
-					System.out.println("Conclusão: Trama com erro(s) detectado(s) e corrigida(s) na posicao: " + h.getPosicao() );
+					System.out.println("Conclusão: Trama com erro(s) detectado(s) e corrigida(s) na posicao " + h.getPosicao() );
+					System.out.println("Trama corrigida: "+corrigida.getTrama()); //novo
 					N_TRAMAS_CORRIGIDAS++;
 					}
 				}
-				//(!recebida.getTrama().equals(transmitida.getTrama()) && h.tramaCorrigida(h.getPosicao(),recebida)==recebida )
+				
 			}
 			System.out.println("Conclusão: Trama com erro(s) detectado(s).");
 

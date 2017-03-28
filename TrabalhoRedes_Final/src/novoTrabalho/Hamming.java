@@ -26,7 +26,6 @@ public class Hamming {
 	public void errosHamming(Trama tramaRecebida) {
 
 		ArrayList<Integer> listaRecebida = tramaRecebida.getTrama();
-		System.out.println(tramaRecebida);
 		int c1 = xor(xor(xor(listaRecebida.get(0), listaRecebida.get(2)), listaRecebida.get(4)), listaRecebida.get(6));
 		int c2 = xor(xor(xor(listaRecebida.get(1), listaRecebida.get(2)), listaRecebida.get(5)), listaRecebida.get(6));
 		int c4 = xor(xor(xor(listaRecebida.get(3), listaRecebida.get(4)), listaRecebida.get(5)), listaRecebida.get(6));
